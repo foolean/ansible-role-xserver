@@ -3,17 +3,27 @@
 # SPDX short identifier: BSD-3-Clause
 ---
 
-- name: Ensure xorg-11-server-common is not installed (CIS)
-  become: true
-  ansible.builtin.package:
-    name:
-      - 'xorg-x11-server-Xdmx'
-      - 'xorg-x11-server-Xephyr'
-      - 'xorg-x11-server-Xnest'
-      - 'xorg-x11-server-Xorg'
-      - 'xorg-x11-server-Xspice'
-      - 'xorg-x11-server-Xvfb'
-      - 'xorg-x11-server-common'
-      - 'xorg-x11-server-devel'
-      - 'xorg-x11-server-source'
-    state: absent
+# We put the entire role in a block so we can create
+# a role specific tag, which saves the caller from
+# having to do so in their playbook.
+- name: Role foolean/xserver
+  block:
+
+    - name: Ensure xorg-11-server-common is not installed (CIS)
+      become: true
+      ansible.builtin.package:
+        name:
+          - 'xorg-x11-server-Xdmx'
+          - 'xorg-x11-server-Xephyr'
+          - 'xorg-x11-server-Xnest'
+          - 'xorg-x11-server-Xorg'
+          - 'xorg-x11-server-Xspice'
+          - 'xorg-x11-server-Xvfb'
+          - 'xorg-x11-server-common'
+          - 'xorg-x11-server-devel'
+          - 'xorg-x11-server-source'
+        state: absent
+
+  # Tags to be applied to this role (block)
+  tags:
+    - 'role_foolean_xserver'
