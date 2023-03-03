@@ -1,0 +1,11 @@
+# Copyright (c) 2023, Bennett Samowich <bennett@foolean.org>
+# All rights reserved
+# SPDX short identifier: BSD-3-Clause
+---
+
+# xserver_packages
+#   List of packages to be installed/removed
+xserver_packages:
+  - 'xserver-common'
+  - 'x11-xserver-utils'
+  - 'xinit'
